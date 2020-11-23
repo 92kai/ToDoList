@@ -1,1 +1,65 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="main.css">
+</head>
+<body>
 
+    <div id="app">
+
+        <label v-for="label in options">
+            <input type="radio"
+            v-model="current"
+            v-bind:value="label.value">{{ label.label}}
+        </label>
+
+        <table>
+            <thead v-pre>
+                <tr>
+                    <th class="id">ID</th>
+                    <th class="comment">コメント</th>
+                    <th class="state">状態</th>
+                    <th class="button">-</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr v-for="item in computedTodos" v-bind:key="item.id">
+                    <th>{{ item.id }}</th>
+                    <td>{{ item.comment }}</td>
+                    <td class="state">
+                        <button v-on:click="doChangeState(item)">{{ labels[item.state] }}</button>
+                    </td>
+                    <td class="button">
+                        <button v-on:click.ctrl="doRemove(item)">削除</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h2>新しい作業の追加</h2>
+        <form  v-on:submit.prevent="doAdd">
+            コメント <input type="text" ref="comment">
+            <button type="submit">追加</button>
+        </form>
+
+        <button v-on:click="openModal">Click</button>
+        <!-- <div id="overlay" v-show="showContent" v-on:click="closeModal">
+            <div id="content">
+                <p>これがモーダルウィンドウです。</p>
+                <p><button v-on:click="closeModal">close</button></p>
+            </div>
+        </div> -->
+        <open-modal v-show="showContent"  v-on:from-child="closeModal" v-on:from-child2="doAdd"></open-modal>
+        
+    </div>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+    <script src="modal.js"></script>
+    <script src="main.js"></script>
+ 
+</body>
+</html>
