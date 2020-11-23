@@ -52,7 +52,7 @@
                 <p><button v-on:click="closeModal">close</button></p>
             </div>
         </div> -->
-        <open-modal v-show="showContent"  v-on:from-child="closeModal" v-on:from-child2="doAdd"></open-modal>
+        <open-modal ref="openModal" v-show="showContent"  v-on:from-child="closeModal" v-on:from-child2="doAdd"></open-modal>
         
     </div>
 

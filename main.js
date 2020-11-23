@@ -34,7 +34,7 @@ const app = new Vue({
     },
     methods : {
       doAdd: function(event,value){
-        var comment = this.$refs.comment
+        var comment = this.$refs.openModal.$refs.comment
         // console.log(value)
         // console.log(comment)
         // console.log(comment.value)
@@ -48,7 +48,6 @@ const app = new Vue({
           comment: comment.value,
           state:0
         })
-        console.log(value)
         comment.value = ""
 
       
